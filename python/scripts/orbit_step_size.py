@@ -9,14 +9,11 @@ import matplotlib.pyplot as plt
 
 matplotlib.rc('font', **{'size': 14})
 
-#dt = int(0.05 * 1.0e9)
-steps = 3600 * 500 #* 10
+steps = 3600 * 500 * 8
 
 configs = ['sensors/base', 'truth/base', 'truth/deployment']
 configs = ['config/parameters/' + config + '.txt' for config in configs]
 config = Configuration(configs)
-
-#config['truth.dt.ns'] = dt
 
 sim = Simulation(SingleOrbitGnc, config)
 
@@ -49,6 +46,7 @@ fig = plt.figure()
 plt.plot(logs['truth.t.s'], logs['truth.leader.orbit.E'])
 plt.xlabel('$t$ (s)')
 plt.ylabel('Orbital Energy (J)')
+plt.grid('major')
 
 fig.tight_layout()
 fig.show()
