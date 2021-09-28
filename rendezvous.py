@@ -18,6 +18,7 @@ N = 100
 configs = ['sensors/base', 'truth/base', 'truth/near_field']
 configs = ['config/parameters/' + config + '.txt' for config in configs]
 config = Configuration(configs)
+config['truth.follower.m'] = m
 
 # Fields being logged to CSV from the simulation
 fields = [
@@ -41,7 +42,7 @@ R = sp.sparse.diags([1.0, 1.0, 1.0])
 J_max = 0.025
 
 # Satellite mass
-m = 3.6
+m = config['truth.follower.m']
 
 
 class RendezvousController(object):
